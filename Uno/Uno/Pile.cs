@@ -13,5 +13,13 @@ namespace Uno {
         public Pile(List<T> collection) {
             pile = collection;
         }
+
+        public T Take() {
+            return Take(1)[0];
+        }
+
+        public T[] Take(int n) {
+            return pile.Take(n).ToArray();
+        }
     }
 }
