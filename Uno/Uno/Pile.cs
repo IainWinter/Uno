@@ -16,6 +16,14 @@ namespace Uno {
             _pile = collection;
         }
 
+        public void Add(T card) {
+            _pile.Add(card);
+        }
+
+        public void Add(T[] cards) {
+            foreach (T card in cards)
+                _pile.Add(card);
+        }
         public T Take() {
             return Take(1)[0];
         }

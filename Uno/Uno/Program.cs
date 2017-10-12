@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Uno {
     class Program {
         static void Main(string[] args) {
+            Console.Write(Console.ReadLine());
         }
     }
 }
