@@ -8,7 +8,7 @@ namespace Uno {
     class Hand<T>:Pile<T> {
       
         public void DealToHand(Card card) {
-            Hand<T>.Add(card);
+          
         }
     }
 }
