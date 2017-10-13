@@ -25,6 +25,10 @@ namespace Uno {
             _hand.AddRange(cards);
         }
 
+        public int GetSize() {
+            return _hand.Count;
+        }
+
         public T PlayCard(int index) {
             T card = _hand[index];
             _hand.RemoveAt(index);
