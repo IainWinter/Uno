@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uno {
-    class Hand<Card> {
+    class Hand<TIdiot> {
 
-        private List<Card> _hand;
+        private List<TIdiot> _hand;
 
-        public void DealToHand(Card card) {
+        public void DealToHand(TIdiot card) {
             _hand.Add(card);
         }
 
-        public void DealToHand(Card[] cards) {
+        public void DealToHand(TIdiot[] cards) {
             _hand.AddRange(cards);
         }
 
-        public Card PlayCard(Card card) {
-            Card removedCard = _hand[_hand.IndexOf(card)];
+        public TIdiot PlayCard(TIdiot card) {
+            TIdiot removedCard = _hand[_hand.IndexOf(card)];
             _hand.Remove(card);
             return removedCard;
         }
