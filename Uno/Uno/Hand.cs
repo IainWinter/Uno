@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 namespace Uno {
     class Hand<T> : Pile<T> {
         
-        /*public T DealToHand() {
-            
-        }*/
+        public void DealToHand(T card) {
+            Add(card);
+        }
+
+        public T PlayCard(T card) {
+            return Take(card);
+        }
     }
 }

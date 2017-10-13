@@ -23,6 +23,7 @@ namespace Uno {
         public void Add(T[] items) {
             _pile.AddRange(items);
         }
+
         public T Take() {
             return Take(1)[0];
         }
