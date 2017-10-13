@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Uno {
     class Hand<T> : Pile<T> {
         
-        public T DealToHand(Card card) {
-            
+        public void DealToHand(T card) {
+            Add(card);
         }
     }
 }
