@@ -24,6 +24,7 @@ namespace Uno {
             foreach (T card in cards)
                 _pile.Add(card);
         }
+
         public T Take() {
             return Take(1)[0];
         }
