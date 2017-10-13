@@ -15,26 +15,28 @@ namespace Uno {
             _hand.DealToHand(c);
         }
 
-        public Card DoTurn(Card c)
-        {
-            Console.WriteLine($"It is now {name}'s turn");
+        public Card DoTurn(Card c) {
+            Console.WriteLine($"It is now {name}'s turn!");
+            Console.WriteLine();
+            Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
+            Console.WriteLine();
+            Console.WriteLine();
             Console.Write("The top card is " + c.ToString());
-            Console.WriteLine("play a card!");
 
-            int played = int.Parse(Console.ReadLine());
-            Card playedCard = _hand.PlayCard(played);
-            while (true){
-                if (playedCard.GetType() == c.GetType() || playedCard.GetColor() == c.GetColor() || playedCard.GetType() == CardType.Wild){
-                    return playedCard;
-                }
-                else{
-                    Console.WriteLine("Invalid play, try again");
-                }
-            }
+            int cardIndex = 0;
+            Card card;
+            do {
+                Console.WriteLine();
+                Console.WriteLine("Play card: ");
+                cardIndex = Console.Read() - 49;
+                card = _hand[cardIndex];
+            } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
+
+            return card;
         }
 
-        public Boolean HasWon(){
+        public Boolean HasWon() {
             return _hand.GetSize() == 0;
         }
     }

@@ -9,7 +9,7 @@ namespace Uno {
         static void Main(string[] args) {
             Player p = new Player("Iain!!");
             p.DealToHand(new Card(CardColor.Red, CardType.Five));
-            p.DoTurn();
+            p.DoTurn(new Card(CardColor.Blue, CardType.Eight));
 
             Console.Write(Console.ReadLine());
         }
