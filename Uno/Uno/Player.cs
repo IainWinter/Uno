@@ -24,5 +24,8 @@ namespace Uno {
             int played = int.Parse(Console.ReadLine());
             return _hand.PlayCard(played);
         }
+        public Boolean HasWon(){
+            return _hand.GetSize() == 0;
+        }
     }
 }
