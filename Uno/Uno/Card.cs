@@ -17,10 +17,11 @@ namespace Uno {
         public override string ToString() {
             string scolor = Enum.GetName(typeof(CardColor), color);
             string stype = Enum.GetName(typeof(CardType), type);
-            if (scolor == "Wild")
+            if (scolor == "Wild") {
                 return stype;
-            else 
-                return scolor + " " + stype;
+            }
+
+            return $"[{scolor} {stype}]";
         }
     }
 }
