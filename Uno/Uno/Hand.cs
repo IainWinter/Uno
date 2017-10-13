@@ -21,10 +21,10 @@ namespace Uno {
             _hand.AddRange(cards);
         }
 
-        public T PlayCard(T card) {
-            T removedCard = _hand[_hand.IndexOf(card)];
-            _hand.Remove(card);
-            return removedCard;
+        public T PlayCard(int index) {
+            T card = _hand[index];
+            _hand.RemoveAt(index);
+            return card;
         }
 
         public override string ToString() {
