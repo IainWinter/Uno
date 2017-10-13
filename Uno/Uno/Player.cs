@@ -17,11 +17,10 @@ namespace Uno {
         public Card DoTurn()
         {
             Console.WriteLine("It is now " + name + "'s turn");
-            Console.Write(pHand.ToString());
+            Console.Write(_hand.ToString());
             Console.WriteLine("play a card!");
             int played = int.Parse(Console.ReadLine());
-
-            return;
+            return _hand.PlayCard(played);
         }
     }
 }
