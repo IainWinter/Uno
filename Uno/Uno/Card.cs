@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Uno {
     struct Card {
-        Color color;
+        CardColor color;
         CardType type;
         
-        public Card(Color c, CardType t) {
+        public Card(CardColor c, CardType t) {
             color = c;
             type = t;
         }   
 
         public override string ToString() {
-            string scolor = Enum.GetName(typeof(Color), color);
+            string scolor = Enum.GetName(typeof(CardColor), color);
             string stype = Enum.GetName(typeof(CardType), type);
             if (scolor == "Wild")
                 scolor = "";

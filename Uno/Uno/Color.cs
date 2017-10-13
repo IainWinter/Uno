@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uno {
-    enum Color {
+    enum CardColor {
         Blue,
         Red,
         Green,
