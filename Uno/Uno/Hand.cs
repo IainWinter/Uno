@@ -8,6 +8,10 @@ namespace Uno {
     class Hand<T> {
         private List<T> _hand;
 
+        public Hand() {
+            _hand = new List<T>();
+        }
+
         public T this[int index] {
             get { return _hand[index]; }
             set { _hand[index] = value; }

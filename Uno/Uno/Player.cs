@@ -1,13 +1,14 @@
 ﻿using System;
 namespace Uno {
     class Player {
-        private String name;
+        private string name;
         private Hand<Card> _hand;
 
         public Hand<Card> Hand => _hand;
 
-        public Player(String playerName) {
+        public Player(string playerName) {
             name = playerName;
+            _hand = new Hand<Card>();
         }
 
         public void DealToHand(Card c) {
@@ -16,9 +17,10 @@ namespace Uno {
 
         public Card DoTurn()
         {
-            Console.WriteLine("It is now " + name + "'s turn");
+            Console.WriteLine($"It is now {name}'s turn");
             Console.Write(_hand.ToString());
             Console.WriteLine("play a card!");
+
             int played = int.Parse(Console.ReadLine());
             return _hand.PlayCard(played);
         }
