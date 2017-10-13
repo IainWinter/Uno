@@ -9,6 +9,8 @@ namespace Uno {
         private List<T> _played;
         private List<T> _unPlayed;
 
+        public T Top => _unPlayed[0];
+
         public Deck() : this(new List<T>()) { }
         public Deck(List<T> cards) : base() {
             _played = cards;
