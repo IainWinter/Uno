@@ -1,23 +1,32 @@
 ﻿using System;
 namespace Uno
 {
-    public class Player
+    class Player
     {
         private String name;
         private Hand<Card> pHand;
         private Deck<Card> deck;
-        public Player(String playerName,Deck<Card> currentDeck){
+        public Player(String playerName){
             name = playerName;
-            deck = currentDeck;
-            pHand.DealToHand(deck.Take(7));
-
-
         }
 
+        public Hand<Card> getpHand(){
+            return pHand;
+        }
 
+        public void setpHand(Hand<Card> newHand){
+            pHand = newHand;
+        }
+
+        public void DealToHand(Card c){
+            pHand.DealToHand(c);
+        }
 
         public Card DoTurn(){
+            Console.WriteLine("It is now " + name + "'s turn");
             Console.Write(pHand.ToString());
+
+            return;
         }
     }
 }
