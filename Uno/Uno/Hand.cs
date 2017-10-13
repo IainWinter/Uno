@@ -10,5 +10,9 @@ namespace Uno {
         public void DealToHand(T card) {
             Add(card);
         }
+
+        public T PlayCard(T card) {
+            return Take(card);
+        }
     }
 }
