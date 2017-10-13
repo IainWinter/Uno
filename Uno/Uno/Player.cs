@@ -10,14 +10,6 @@ namespace Uno {
             name = playerName;
         }
 
-        public Hand<Card> getpHand() {
-            return _hand;
-        }
-
-        public void setpHand(Hand<Card> newHand) {
-            _hand = newHand;
-        }
-
         public void DealToHand(Card c) {
             _hand.DealToHand(c);
         }
