@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Uno {
     class Hand<T> {
-
         private List<T> _hand;
 
         public void DealToHand(T card) {

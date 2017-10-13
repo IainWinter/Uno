@@ -20,5 +20,5 @@ namespace Uno {
         DrawTwo,
         DrawFour,
         Wild,
-    };
+    }
 }

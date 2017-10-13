@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uno {
-    public class Deck<T> {
+    class Deck<T> {
         private List<T> _played;
         private List<T> _unPlayed;
 

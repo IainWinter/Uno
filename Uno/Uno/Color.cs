@@ -11,7 +11,5 @@ namespace Uno {
         Green,
         Yellow,
         Wild
-    };
-
-    //COMMENT
+    }
 }
