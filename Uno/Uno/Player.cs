@@ -14,9 +14,12 @@ namespace Uno {
             _hand.DealToHand(c);
         }
 
-        public Card DoTurn() {
+        public Card DoTurn()
+        {
             Console.WriteLine("It is now " + name + "'s turn");
-            Console.Write(_hand.ToString());
+            Console.Write(pHand.ToString());
+            Console.WriteLine("play a card!");
+            int played = int.Parse(Console.ReadLine());
 
             return;
         }
