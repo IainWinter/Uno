@@ -8,6 +8,11 @@ namespace Uno {
     class Hand<T> {
         private List<T> _hand;
 
+        public T this[int index] {
+            get { return _hand[index]; }
+            set { _hand[index] = value; }
+        }
+
         public void DealToHand(T card) {
             _hand.Add(card);
         }
