@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 namespace Uno {
     class Player {
-        private string name;
+        public string name;
         private Hand<Card> _hand;
 
         public Hand<Card> Hand => _hand;
@@ -24,6 +24,7 @@ namespace Uno {
             Console.WriteLine();
             Console.Write("The top card is " + c.ToString());
 
+<<<<<<< Updated upstream
             int cardIndex = 0;
             Card card;
             do {
@@ -34,6 +35,11 @@ namespace Uno {
             } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
 
             return card;
+=======
+            int played = int.Parse(Console.ReadLine());
+
+            return new Card();
+>>>>>>> Stashed changes
         }
 
         public Boolean HasWon() {
