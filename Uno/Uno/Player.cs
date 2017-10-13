@@ -1,29 +1,17 @@
 ﻿using System;
-namespace Uno
-{
-    class Player
-    {
+namespace Uno {
+    class Player {
         private String name;
-        private Hand<Card> pHand;
-        private Deck<Card> deck;
-        public Player(String playerName)
-        {
+        private Hand<Card> _hand;
+
+        public Hand<Card> Hand => _hand;
+
+        public Player(String playerName) {
             name = playerName;
         }
 
-        public Hand<Card> getpHand()
-        {
-            return pHand;
-        }
-
-        public void setpHand(Hand<Card> newHand)
-        {
-            pHand = newHand;
-        }
-
-        public void DealToHand(Card c)
-        {
-            pHand.DealToHand(c);
+        public void DealToHand(Card c) {
+            _hand.DealToHand(c);
         }
 
         public Card DoTurn()
