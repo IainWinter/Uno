@@ -15,7 +15,7 @@ namespace Uno {
             _hand.DealToHand(c);
         }
 
-        public Card DoTurn(Card c) {
+        public Card ChooseCard(Card c) {
             Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
@@ -24,7 +24,7 @@ namespace Uno {
             Console.WriteLine();
             Console.Write("The top card is " + c.ToString());
 
-<<<<<<< Updated upstream
+
             int cardIndex = 0;
             Card card;
             do {
@@ -35,11 +35,11 @@ namespace Uno {
             } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
 
             return card;
-=======
+
             int played = int.Parse(Console.ReadLine());
 
             return new Card();
->>>>>>> Stashed changes
+
         }
 
         public Boolean HasWon() {

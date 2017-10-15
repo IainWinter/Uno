@@ -16,6 +16,7 @@ namespace Uno
         private int currentPlayer;
         private int nextPlace;
         private int dir;
+        private CardColor nClr;
 
         public Game()
         {
@@ -56,21 +57,28 @@ namespace Uno
         void Turn()
         {
             Player p = players[currentPlayer];
-            p.DoTurn(cards.Top());
+            cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(nClr, CardType.Wild) : cards.Top));
             if(p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
                 nextPlace++;
             }
-            currentPlayer = Iterate(currentPlayer);
+            Iterate();
         }
 
         int Iterate(int i) {
             i = i += dir;
-            if (i < 0 || i >= players.Count()) {
-                i = dir == 1 ? 0 : players.Count() - 1;
+            if (i < 0 || i >= players.Count) {
+                i = dir == 1 ? 0 : players.Count - 1;
             }
             return i;
+        }
+
+        void Iterate() {
+            currentPlayer = currentPlayer += dir;
+            if (currentPlayer < 0 || currentPlayer >= players.Count) {
+                currentPlayer = dir == 1 ? 0 : players.Count - 1;
+            }
         }
 
 
@@ -83,7 +91,7 @@ namespace Uno
         public CardColor ColorInput(string prompt) {
             while (true) {
                 string input = GetInput(prompt);
-                foreach (CardColor c in typeof(CardColor).GetEnumValues()) if (c.ToString() == input) return c;
+                foreach (CardColor c in typeof(CardColor).GetEnumValues()) if (c.ToString() == input && input != "Wild") return c;
             }
         }
 
@@ -97,15 +105,22 @@ namespace Uno
                 case CardType.DrawFour:
                     for (int i = 0; i < 4; i++) {
                         players[Iterate((currentPlayer))].DealToHand(cards.Take());
+                        nClr = ColorInput("New Color: ");
                     }
-
                     break;
                 case CardType.Reverse:
                     dir *= -1;
                     break;
                 case CardType.Skip:
+                    Iterate();
                     break;
                 case CardType.Wild:
+                    nClr = ColorInput("New Color: ");
+                    break;
+                default:
+                    string[] arr = new string[] { "one", "two", "three" };
+                    Console.WriteLine(arr[3]);
+                    //spice
                     break;
             }
         }
