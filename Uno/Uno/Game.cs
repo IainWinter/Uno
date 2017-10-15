@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 
 namespace Uno {
-    class Game
-    {
-
+    class Game {
         private Deck<Card> cards;
         public List<Player> players;
         private bool gameActive;
@@ -14,16 +12,14 @@ namespace Uno {
         private int dir;
         private CardColor nClr;
 
-        public Game()
-        {
+        public Game() {
 
         }
 
-        public void Start()
-        {
+        public void Start() {
             Init();
 
-            while(players.Count > 1) {
+            while (players.Count > 1) {
                 Turn();
             }
 
@@ -35,12 +31,10 @@ namespace Uno {
 
         }
 
-        void Init()
-        {
+        void Init() {
             int playerCount = int.Parse(GetInput("How many players?: "));
             players = new List<Player>();
-            for (int i = 1; i <= playerCount; i++)
-            {
+            for (int i = 1; i <= playerCount; i++) {
                 players.Add(new Player(GetInput("Player " + i + " name: ")));
             }
             cards = new Deck<Card>();
@@ -53,11 +47,10 @@ namespace Uno {
             cards.Play(cards.Draw());
         }
 
-        void Turn()
-        {
+        void Turn() {
             Player p = players[currentPlayer];
             cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(nClr, CardType.Wild) : cards.Top));
-            if(p.HasWon()) {
+            if (p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
                 nextPlace++;
@@ -81,8 +74,7 @@ namespace Uno {
         }
 
 
-        string GetInput(string prompt)
-        {
+        string GetInput(string prompt) {
             Console.Write(prompt);
             return Console.ReadLine();
         }
@@ -128,13 +120,11 @@ namespace Uno {
             Array colors = Enum.GetValues(typeof(CardColor));
             Array types = Enum.GetValues(typeof(CardType));
 
-            foreach(CardColor color in colors) {
-                foreach(CardType type in types) {
-                    if(color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour)) {
+            foreach (CardColor color in colors) {
+                foreach (CardType type in types) {
+                    if (color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour)) {
                         cards.Add(new Card(color, type));
-                    }
-
-                    else if(color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour) {
+                    } else if (color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour) {
                         cards.Add(new Card(color, type));
                     }
                 }
