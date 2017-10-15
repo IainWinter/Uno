@@ -35,11 +35,6 @@ namespace Uno {
             } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
 
             return card;
-
-            int played = int.Parse(Console.ReadLine());
-
-            return new Card();
-
         }
 
         public Boolean HasWon() {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Uno {
     class Deck<T> {
@@ -14,14 +12,19 @@ namespace Uno {
         public Deck() : this(new List<T>()) { }
         public Deck(List<T> cards) : base() {
             _played = cards;
+            _unPlayed = new List<T>();
         }
 
         public void Play(T play) {
             _played.Add(play);
         }
 
-        public T Take() {
+        public T Draw() {
             return _unPlayed.Take(1).ToArray()[0];
+        }
+
+        public void Add(T item) {
+            _unPlayed.Add(item);
         }
 
         public void Shuffle() {

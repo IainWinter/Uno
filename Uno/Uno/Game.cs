@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Uno
-{
+namespace Uno {
     class Game
     {
 
@@ -52,6 +48,9 @@ namespace Uno
             winners = new Player[playerCount];
             nextPlace = 1;
             dir = 1;
+            GenerateDeck();
+            cards.Shuffle();
+            cards.Play(cards.Draw());
         }
 
         void Turn()
@@ -99,12 +98,12 @@ namespace Uno
             switch (c) {
                 case CardType.DrawTwo:
                     for (int i = 0; i < 2; i++) {
-                        players[Iterate((currentPlayer))].DealToHand(cards.Take());
+                        players[Iterate((currentPlayer))].DealToHand(cards.Draw());
                     }
                     break;
                 case CardType.DrawFour:
                     for (int i = 0; i < 4; i++) {
-                        players[Iterate((currentPlayer))].DealToHand(cards.Take());
+                        players[Iterate((currentPlayer))].DealToHand(cards.Draw());
                         nClr = ColorInput("New Color: ");
                     }
                     break;
@@ -124,6 +123,22 @@ namespace Uno
                     break;
             }
         }
-  
+
+        public void GenerateDeck() {
+            Array colors = Enum.GetValues(typeof(CardColor));
+            Array types = Enum.GetValues(typeof(CardType));
+
+            foreach(CardColor color in colors) {
+                foreach(CardType type in types) {
+                    if(color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour)) {
+                        cards.Add(new Card(color, type));
+                    }
+
+                    else if(color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour) {
+                        cards.Add(new Card(color, type));
+                    }
+                }
+            }
+        }
     }
 }
