@@ -80,9 +80,11 @@ namespace Uno
             return Console.ReadLine();
         }
 
-        CardColor ColorInput(string prompt) {
-            string input = GetInput(prompt);
-
+        public CardColor ColorInput(string prompt) {
+            while (true) {
+                string input = GetInput(prompt);
+                foreach (CardColor c in typeof(CardColor).GetEnumValues()) if (c.ToString() == input) return c;
+            }
         }
 
         void FuncCards(CardType c) {
