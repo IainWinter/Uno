@@ -10,7 +10,7 @@ namespace Uno {
         private int currentPlayer;
         private int nextPlace;
         private int dir;
-        private CardColor nClr;
+        private CardColor newClr;
 
         public Game() {
             cards = new Deck<Card>();
@@ -56,7 +56,7 @@ namespace Uno {
         void Turn() {
             Console.Clear();
             Player p = players[currentPlayer];
-            cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(nClr, CardType.Wild) : cards.Top));
+            cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top));
             if (p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
@@ -104,7 +104,7 @@ namespace Uno {
                     for (int i = 0; i < 4; i++) {
                         players[Iterate((currentPlayer))].DealToHand(cards.Draw());
                     }
-                    nClr = ColorInput("New Color: ");
+                    newClr = ColorInput("New Color: ");
                     break;
                 case CardType.Reverse:
                     dir *= -1;
@@ -113,7 +113,7 @@ namespace Uno {
                     Iterate();
                     break;
                 case CardType.Wild:
-                    nClr = ColorInput("New Color: ");
+                    newClr = ColorInput("New Color: ");
                     break;
             }
         }
