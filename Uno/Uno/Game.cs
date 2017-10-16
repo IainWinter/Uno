@@ -13,7 +13,11 @@ namespace Uno {
         private CardColor nClr;
 
         public Game() {
-
+            cards = new Deck<Card>();
+            players = new List<Player>();
+            gameActive = true;
+            nextPlace = 1;
+            dir = 1;
         }
 
         public void Start() {
@@ -37,11 +41,7 @@ namespace Uno {
             for (int i = 1; i <= playerCount; i++) {
                 players.Add(new Player(GetInput("Player " + i + " name: ")));
             }
-            cards = new Deck<Card>();
-            gameActive = true;
             winners = new Player[playerCount];
-            nextPlace = 1;
-            dir = 1;
             GenerateDeck();
             cards.Shuffle();
             cards.Play(cards.Draw());
