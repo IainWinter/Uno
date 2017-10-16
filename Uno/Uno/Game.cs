@@ -9,7 +9,7 @@ namespace Uno {
         private int currentPlayer;
         private int nextPlace;
         private int dir;
-        private CardColor newClr;
+        private CardColor newColor;
 
         public Game() {
             cards = new Deck<Card>();
@@ -30,21 +30,22 @@ namespace Uno {
             for (int i = 0; i < winners.Length; i++) {
                 Console.WriteLine(i + ": " + winners[i].name);
             }
-
         }
 
         void Init() {
-            int playerCount = int.Parse(GetInput("How many players?: "));
-            players = new List<Player>();
-            for (int i = 1; i <= playerCount; i++) {
-                players.Add(new Player(GetInput("Player " + i + " name: ")));
-            }
-            winners = new Player[playerCount];
             GenerateDeck();
             cards.Shuffle();
             cards.Play(cards.Draw());
 
-            foreach(Player p in players) {
+            int playerCount = int.Parse(GetInput("How many players?: "));
+            for (int i = 1; i <= playerCount; i++) {
+                string playerName = GetInput("Player " + i + " name: ");
+                players.Add(new Player(playerName));
+            }
+
+            winners = new Player[playerCount];
+
+            foreach (Player p in players) {
                 for (int i = 0; i < 7; i++) {
                     p.DealToHand(cards.Draw());
                 }
@@ -53,34 +54,39 @@ namespace Uno {
 
         void Turn() {
             Console.Clear();
-            Player p = players[currentPlayer];
-            for (int i = 0; i < 10; i++) {
-                Console.Write("GIVE COMPUTER TO " + p.name.ToUpper() + " [" + (5 - 0.5 * i) + " SECONDS]");
-                System.Threading.Thread.Sleep(500);
-                Console.Clear();
-            }
-            bool canPlay = true;
-            Card topCard = cards.Top;
+            Player player = players[currentPlayer];
+
+            GetInput($"Press any key to change turn to {player}");
+
             int drawAmnt = 0;
-            do {
-                for (int i = 0; i < p.Hand.GetSize(); i++) {
-                    if (p.Hand[i].color == topCard.color || p.Hand[i].type == topCard.type || p.Hand[i].type == CardType.Wild)
-                        canPlay = false;
-                }
-                if (canPlay == true) {
-                    p.Hand.DealToHand(cards.Draw());
-                    drawAmnt++;
-                }
-            } while (canPlay);
-            if (drawAmnt != 0)
+            while(!player.CanPlay(cards.Top)) {
+                player.DealToHand(cards.Draw());
+                drawAmnt++;
+            }
+
+            if(drawAmnt > 0) {
                 Console.WriteLine($"You picked up {drawAmnt} cards");
-            HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
-            if (p.HasWon()) {
-                players.Remove(p);
-                winners[nextPlace - 1] = p;
+            }
+            
+            Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
+            Card played = player.ChooseCard(topCard);
+
+            HandleCard(played.type);
+
+            if (player.HasWon()) {
+                players.Remove(player);
+                winners[nextPlace - 1] = player;
                 nextPlace++;
             }
+
             Iterate();
+        }
+
+        void PickUpNeededCards(Player player) {
+            bool canPlay = false;
+            while(!canPlay) {
+                
+            }
         }
 
         int Iterate(int i) {
@@ -97,7 +103,6 @@ namespace Uno {
                 currentPlayer = dir == 1 ? 0 : players.Count - 1;
             }
         }
-
 
         string GetInput(string prompt) {
             Console.Write(prompt);
@@ -125,7 +130,7 @@ namespace Uno {
                     for (int i = 0; i < 4; i++) {
                         players[Iterate((currentPlayer))].DealToHand(cards.Draw());
                     }
-                    newClr = ColorInput("New Color: ");
+                    newColor = ColorInput("New Color: ");
                     break;
                 case CardType.Reverse:
                     dir *= -1;
@@ -134,7 +139,7 @@ namespace Uno {
                     Iterate();
                     break;
                 case CardType.Wild:
-                    newClr = ColorInput("New Color: ");
+                    newColor = ColorInput("New Color: ");
                     break;
             }
         }

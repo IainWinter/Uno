@@ -36,8 +36,18 @@ namespace Uno {
             return card;
         }
 
-        public Boolean HasWon() {
+        public bool HasWon() {
             return _hand.GetSize() == 0;
+        }
+
+        public bool CanPlay(Card topCard) {
+            foreach(Card c in _hand) {
+                if(c.color == topCard.color || c.type == topCard.type || c.type == CardType.Wild) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
