@@ -13,10 +13,10 @@ namespace Uno {
 
         public void DealToHand(Card topCard) {
             _hand.DealToHand(topCard);
+
         }
 
         public Card ChooseCard(Card topCard) {
-            Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
@@ -36,7 +36,7 @@ namespace Uno {
             return card;
         }
 
-        public Boolean HasWon() {
+        public Boolean HasFinished() {
             return _hand.GetSize() == 0;
         }
     }

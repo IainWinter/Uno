@@ -37,7 +37,7 @@ namespace Uno {
             int playerCount = int.Parse(GetInput("How many players?: "));
             players = new List<Player>();
             for (int i = 1; i <= playerCount; i++) {
-                players.Add(new Player(GetInput("Player " + i + " name: ")));
+                players.Add(new Player(GetInput($"Player {i} name: ")));
             }
             winners = new Player[playerCount];
             GenerateDeck();
@@ -56,7 +56,7 @@ namespace Uno {
             Console.Clear();
             Player p = players[currentPlayer];
             for (int i = 0; i < 10; i++) {
-                Console.Write("GIVE COMPUTER TO " + p.name.ToUpper() + " [" + (5 - 0.5 * i) + " SECONDS]");
+                Console.Write($"GIVE COMPUTER TO {p.name.ToUpper()} [{5 - 0.5 * i} SECONDS]");
                 System.Threading.Thread.Sleep(500);
                 Console.Clear();
             }
@@ -76,7 +76,7 @@ namespace Uno {
             if (drawAmnt != 0)
                 Console.WriteLine($"You picked up {drawAmnt} cards");
             HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : topCard)).type);
-            if (p.HasWon()) {
+            if (p.HasFinished()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
                 nextPlace++;
