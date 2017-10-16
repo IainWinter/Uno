@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Uno {
     class Deck<T> {
@@ -14,14 +13,33 @@ namespace Uno {
         public Deck() : this(new List<T>()) { }
         public Deck(List<T> cards) : base() {
             _played = cards;
+            _unPlayed = new List<T>();
         }
 
-        public void Play(T play) {
+        public T Play(T play) {
             _played.Add(play);
+            return play;
         }
 
-        public T Take() {
-            return _unPlayed.Take(1).ToArray()[0];
+        public T Draw() {
+            T item = _unPlayed[0];
+            _unPlayed.RemoveAt(0);
+            return item;
+        }
+
+        public void Add(T item) {
+            _unPlayed.Add(item);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _unPlayed.Count; i++)
+            {
+                sb.Append($"{i + 1}. {_unPlayed[i].ToString()}\n");
+            }
+
+            return sb.ToString();
         }
 
         public void Shuffle() {
