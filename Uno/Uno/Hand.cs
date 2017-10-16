@@ -44,7 +44,7 @@ namespace Uno {
             return sb.ToString();
         }
 
-        public override IEnumerator<T> GetEnumerator() {
+        public IEnumerator<T> GetEnumerator() {
             return _hand.GetEnumerator();
         }
     }
