@@ -21,14 +21,13 @@ namespace Uno {
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
             Console.WriteLine();
-            Console.WriteLine();
             Console.Write("The top card is " + topCard.ToString());
 
             int cardIndex = 0;
             Card card;
             do {
                 Console.WriteLine();
-                Console.WriteLine("Play card: ");
+                Console.Write("Play card: ");
                 cardIndex = int.Parse(Console.ReadLine()) - 1;
                 card = _hand[cardIndex];
             } while (card.color != topCard.color && card.type != topCard.type || card.type == CardType.Wild);
