@@ -29,7 +29,7 @@ namespace Uno {
             Card card;
             do {
                 Console.WriteLine();
-                Console.WriteLine("Play card: ");
+                Console.Write("Play card: ");
                 cardIndex = Console.Read() - 49;
                 card = _hand[cardIndex];
             } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
