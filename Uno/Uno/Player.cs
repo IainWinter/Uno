@@ -24,7 +24,6 @@ namespace Uno {
             Console.WriteLine();
             Console.Write("The top card is " + topCard.ToString());
 
-
             int cardIndex = 0;
             Card card;
             do {
