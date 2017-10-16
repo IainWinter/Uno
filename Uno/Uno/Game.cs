@@ -64,7 +64,7 @@ namespace Uno {
             int drawAmnt = 0;
             do {
                 for (int i = 0; i < p.Hand.GetSize(); i++) {
-                    if (p.Hand[i].color == topCard.color || p.Hand[i].type == topCard.type || p.Hand[i].type == CardType.Wild)
+                    if (p.Hand[i].color == topCard.color || p.Hand[i].type == topCard.type || p.Hand[i].type == CardType.Wild || p.Hand[i].type == CardType.DrawFour)
                         canPlay = false;
                 }
                 if (canPlay == true) {
