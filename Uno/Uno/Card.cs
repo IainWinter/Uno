@@ -18,7 +18,7 @@ namespace Uno {
             string scolor = Enum.GetName(typeof(CardColor), color);
             string stype = Enum.GetName(typeof(CardType), type);
             if (scolor == "Wild") {
-                return stype;
+                return $"[{stype}]";
             }
 
             return $"[{scolor} {stype}]";
