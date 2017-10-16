@@ -69,9 +69,9 @@ namespace Uno {
             }
             
             Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
-            Card played = player.ChooseCard(topCard);
+            Card playedCard = player.ChooseCard(topCard);
 
-            HandleCard(played.type);
+            HandleCard(playedCard.type);
 
             if (player.HasWon()) {
                 players.Remove(player);
