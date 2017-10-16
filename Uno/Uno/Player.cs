@@ -21,9 +21,7 @@ namespace Uno {
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
             Console.WriteLine();
-            Console.WriteLine();
             Console.Write("The top card is " + topCard.ToString());
-
 
             int cardIndex = 0;
             Card card;

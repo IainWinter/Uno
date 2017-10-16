@@ -37,8 +37,8 @@ namespace Uno {
 
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
-            foreach(T item in _hand) {
-                sb.Append(item.ToString() + " ");
+            for (int i = 0; i < _hand.Count; i++) {
+                sb.Append($"{i+1}. {_hand[i].ToString()}\n");
             }
 
             return sb.ToString();
