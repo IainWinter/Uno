@@ -45,6 +45,13 @@ namespace Uno {
             GenerateDeck();
             cards.Shuffle();
             cards.Play(cards.Draw());
+
+            //Deal to players
+            foreach(Player p in players) {
+                for (int i = 0; i < 7; i++) {
+                    p.DealToHand(cards.Draw());
+                }
+            }
         }
 
         void Turn() {
