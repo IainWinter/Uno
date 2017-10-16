@@ -87,10 +87,13 @@ namespace Uno {
         }
 
         public CardColor ColorInput(string prompt) {
-            while (true) {
-                string input = GetInput(prompt);
-                foreach (CardColor c in typeof(CardColor).GetEnumValues()) if (c.ToString() == input && input != "Wild") return c;
-            }
+            string input = "";
+            CardColor color;
+            do {
+                input = GetInput(prompt);
+           } while (!Enum.TryParse(input, true, out color));
+
+            return color;
         }
 
         void HandleCard(CardType c) {

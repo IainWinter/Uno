@@ -30,7 +30,7 @@ namespace Uno {
                 Console.Write("Play card: ");
                 cardIndex = int.Parse(Console.ReadLine()) - 1;
                 card = _hand[cardIndex];
-            } while (card.color != topCard.color && card.type != topCard.type || card.type == CardType.Wild);
+            } while (card.color != topCard.color && card.type != topCard.type && card.type != CardType.Wild);
 
             _hand.PlayCard(cardIndex);
             return card;
