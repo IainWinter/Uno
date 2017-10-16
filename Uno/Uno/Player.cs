@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-
 namespace Uno {
     class Player {
         public string name;
@@ -15,10 +13,10 @@ namespace Uno {
 
         public void DealToHand(Card topCard) {
             _hand.DealToHand(topCard);
-            
         }
 
         public Card ChooseCard(Card topCard) {
+            Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
@@ -38,16 +36,18 @@ namespace Uno {
             return card;
         }
 
-        public bool HasFinished() {
+        public bool HasWon() {
             return _hand.GetSize() == 0;
         }
 
-
-        void sortCards() {
-            List<int>[] cards = new List<int>[5];
+        public bool CanPlay(Card topCard) {
             foreach(Card c in _hand) {
-
+                if(c.color == topCard.color || c.type == topCard.type || c.type == CardType.Wild) {
+                    return true;
+                }
             }
+
+            return false;
         }
     }
 }
