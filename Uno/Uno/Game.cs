@@ -46,7 +46,6 @@ namespace Uno {
             cards.Shuffle();
             cards.Play(cards.Draw());
 
-            //Deal to players
             foreach(Player p in players) {
                 for (int i = 0; i < 7; i++) {
                     p.DealToHand(cards.Draw());
@@ -55,6 +54,7 @@ namespace Uno {
         }
 
         void Turn() {
+            Console.Clear();
             Player p = players[currentPlayer];
             cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(nClr, CardType.Wild) : cards.Top));
             if (p.HasWon()) {
@@ -103,8 +103,8 @@ namespace Uno {
                 case CardType.DrawFour:
                     for (int i = 0; i < 4; i++) {
                         players[Iterate((currentPlayer))].DealToHand(cards.Draw());
-                        nClr = ColorInput("New Color: ");
                     }
+                    nClr = ColorInput("New Color: ");
                     break;
                 case CardType.Reverse:
                     dir *= -1;
