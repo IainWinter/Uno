@@ -56,6 +56,7 @@ namespace Uno {
             Player p = players[currentPlayer];
             bool canPlay = true;
             Card topCard = cards.Top;
+            int drawAmnt = 0;
             do {
                 for (int i = 0; i < p.Hand.GetSize(); i++) {
                     if (p.Hand[i].color == topCard.color || p.Hand[i].type == topCard.type || p.Hand[i].type == CardType.Wild)
@@ -63,9 +64,11 @@ namespace Uno {
                 }
                 if (canPlay == true) {
                     p.Hand.DealToHand(cards.Draw());
-                    Console.WriteLine("You couldn't play, TAKE A CARD!");
+                    drawAmnt++;
                 }
             } while (canPlay);
+            if (drawAmnt != 0)
+                Console.WriteLine($"You picked up {drawAmnt} cards");
             HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
             if (p.HasWon()) {
                 players.Remove(p);
