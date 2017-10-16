@@ -11,29 +11,30 @@ namespace Uno {
             _hand = new Hand<Card>();
         }
 
-        public void DealToHand(Card c) {
-            _hand.DealToHand(c);
+        public void DealToHand(Card topCard) {
+            _hand.DealToHand(topCard);
         }
 
-        public Card ChooseCard(Card c) {
+        public Card ChooseCard(Card topCard) {
             Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
             Console.WriteLine();
             Console.WriteLine();
-            Console.Write("The top card is " + c.ToString());
+            Console.Write("The top card is " + topCard.ToString());
 
 
             int cardIndex = 0;
             Card card;
             do {
                 Console.WriteLine();
-                Console.Write("Play card: ");
-                cardIndex = Console.Read() - 49;
+                Console.WriteLine("Play card: ");
+                cardIndex = int.Parse(Console.ReadLine()) - 1;
                 card = _hand[cardIndex];
-            } while (card.type != c.type || card.color != c.color || card.type != CardType.Wild);
+            } while (card.color != topCard.color && card.type != topCard.type || card.type == CardType.Wild);
 
+            _hand.PlayCard(cardIndex);
             return card;
         }
 
