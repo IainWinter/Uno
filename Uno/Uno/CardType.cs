@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uno {
     enum CardType {
+        Zero,
         One,
         Two,
         Three,
