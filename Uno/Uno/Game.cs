@@ -56,7 +56,7 @@ namespace Uno {
         void Turn() {
             Console.Clear();
             Player p = players[currentPlayer];
-            cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top));
+            HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
             if (p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;

@@ -15,8 +15,9 @@ namespace Uno {
             _unPlayed = new List<T>();
         }
 
-        public void Play(T play) {
+        public T Play(T play) {
             _played.Add(play);
+            return play;
         }
 
         public T Draw() {
