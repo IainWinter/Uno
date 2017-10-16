@@ -16,7 +16,6 @@ namespace Uno {
         }
 
         public Card ChooseCard(Card topCard) {
-            Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
