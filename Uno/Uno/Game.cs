@@ -5,7 +5,6 @@ namespace Uno {
     class Game {
         private Deck<Card> cards;
         public List<Player> players;
-        private bool gameActive;
         private Player[] winners;
         private int currentPlayer;
         private int nextPlace;
@@ -15,7 +14,6 @@ namespace Uno {
         public Game() {
             cards = new Deck<Card>();
             players = new List<Player>();
-            gameActive = true;
             nextPlace = 1;
             dir = 1;
         }
