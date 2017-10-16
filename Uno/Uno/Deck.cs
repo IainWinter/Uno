@@ -20,7 +20,9 @@ namespace Uno {
         }
 
         public T Draw() {
-            return _unPlayed.Take(1).ToArray()[0];
+            T item = _unPlayed[0];
+            _unPlayed.RemoveAt(0);
+            return item;
         }
 
         public void Add(T item) {
