@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace Uno {
     class Player {
         public string name;
@@ -13,7 +15,7 @@ namespace Uno {
 
         public void DealToHand(Card topCard) {
             _hand.DealToHand(topCard);
-
+            
         }
 
         public Card ChooseCard(Card topCard) {
@@ -36,8 +38,16 @@ namespace Uno {
             return card;
         }
 
-        public Boolean HasFinished() {
+        public bool HasFinished() {
             return _hand.GetSize() == 0;
+        }
+
+
+        void sortCards() {
+            List<int>[] cards = new List<int>[5];
+            foreach(Card c in _hand) {
+
+            }
         }
     }
 }
