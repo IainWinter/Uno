@@ -56,21 +56,23 @@ namespace Uno {
             Console.Clear();
             Player player = players[currentPlayer];
 
-            GetInput($"Press any key to change turn to {player}");
+            GetInput($"Press any key to change to {player.name}'s turn...");
+            Console.Clear();
 
             int drawAmnt = 0;
-            while(!player.CanPlay(cards.Top)) {
+            while (!player.CanPlay(cards.Top)) {
                 player.DealToHand(cards.Draw());
                 drawAmnt++;
             }
 
-            if(drawAmnt > 0) {
-                Console.WriteLine($"You picked up {drawAmnt} cards");
+            if (drawAmnt > 0) {
+                Console.WriteLine($"{player.name} picked up {drawAmnt} cards");
             }
-            
+
             Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
             Card playedCard = player.ChooseCard(topCard);
 
+            cards.Play(playedCard);
             HandleCard(playedCard.type);
 
             if (player.HasWon()) {
@@ -80,13 +82,6 @@ namespace Uno {
             }
 
             Iterate();
-        }
-
-        void PickUpNeededCards(Player player) {
-            bool canPlay = false;
-            while(!canPlay) {
-                
-            }
         }
 
         int Iterate(int i) {
@@ -109,12 +104,12 @@ namespace Uno {
             return Console.ReadLine();
         }
 
-        public CardColor ColorInput(string prompt) {
+        CardColor ColorInput(string prompt) {
             string input = "";
             CardColor color;
             do {
                 input = GetInput(prompt);
-           } while (!Enum.TryParse(input, true, out color));
+            } while (!Enum.TryParse(input, true, out color));
 
             return color;
         }
@@ -144,19 +139,20 @@ namespace Uno {
             }
         }
 
-        public void GenerateDeck(){
+        public void GenerateDeck() {
             Array colors = Enum.GetValues(typeof(CardColor));
             Array types = Enum.GetValues(typeof(CardType));
-            for (int i = 0; i < 2; i++){
-                foreach (CardColor color in colors){
-                    foreach (CardType type in types){
-                        if (color != CardColor.Wild && !(type == CardType.Wild || type == CardType.DrawFour)){
+            for (int i = 0; i < 2; i++) {
+                foreach (CardColor color in colors) {
+                    foreach (CardType type in types) {
+                        if (color != CardColor.Wild && !(type == CardType.Wild || type == CardType.DrawFour)) {
                             cards.Add(new Card(color, type));
                         }
                     }
                 }
             }
-            for (int i = 0; i < 4; i++){
+
+            for (int i = 0; i < 4; i++) {
                 cards.Add(new Card(CardColor.Wild, CardType.Wild));
                 cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
             }
