@@ -74,7 +74,7 @@ namespace Uno {
             } while (canPlay);
             if (drawAmnt != 0)
                 Console.WriteLine($"You picked up {drawAmnt} cards");
-            HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
+            HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : topCard)).type);
             if (p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
