@@ -56,6 +56,18 @@ namespace Uno {
         void Turn() {
             Console.Clear();
             Player p = players[currentPlayer];
+            bool canPlay = false;
+            Card topCard = cards.Top;
+            do {
+                for (int i = 0; i < p.Hand.GetSize(); i++) {
+                    if (p.Hand[i].color == topCard.color || p.Hand[i].type == topCard.type || p.Hand[i].type == CardType.Wild)
+                        canPlay = true;
+                }
+                if (canPlay == false) {
+                    p.Hand.DealToHand(cards.Draw());
+                    Console.WriteLine("You couldn't play, TAKE A CARD!");
+                }
+            } while (canPlay);
             HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
             if (p.HasWon()) {
                 players.Remove(p);
