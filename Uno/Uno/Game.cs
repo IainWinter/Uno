@@ -41,6 +41,7 @@ namespace Uno {
             }
             winners = new Player[playerCount];
             GenerateDeck();
+            Console.Write(cards.ToString());
             cards.Shuffle();
             cards.Play(cards.Draw());
 
@@ -152,6 +153,24 @@ namespace Uno {
                     }
                 }
             }
+            foreach (CardColor color in colors)
+            {
+                foreach (CardType type in types)
+                {
+                    if (color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour))
+                    {
+                        cards.Add(new Card(color, type));
+                    }
+                    else if (color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour)
+                    {
+                        cards.Add(new Card(color, type));
+                    }
+                }
+            }
+            cards.Add(new Card(CardColor.Wild, CardType.Wild));
+            cards.Add(new Card(CardColor.Wild, CardType.Wild));
+            cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
+            cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
         }
     }
 }

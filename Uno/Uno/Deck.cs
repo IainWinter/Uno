@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Uno {
     class Deck<T> {
@@ -28,6 +29,17 @@ namespace Uno {
 
         public void Add(T item) {
             _unPlayed.Add(item);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _unPlayed.Count; i++)
+            {
+                sb.Append($"{i + 1}. {_unPlayed[i].ToString()}\n");
+            }
+
+            return sb.ToString();
         }
 
         public void Shuffle() {
