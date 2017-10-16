@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
-{
-    class Game
-    {
+namespace Uno {
+    class Game {
 
         private Deck<Card> cards;
         public List<Player> players;
@@ -18,16 +16,14 @@ namespace Uno
         private int dir;
         private CardColor nClr;
 
-        public Game()
-        {
+        public Game() {
 
         }
 
-        public void Start()
-        {
+        public void Start() {
             Init();
 
-            while(players.Count > 1) {
+            while (players.Count > 1) {
                 Turn();
             }
 
@@ -39,12 +35,10 @@ namespace Uno
 
         }
 
-        void Init()
-        {
+        void Init() {
             int playerCount = int.Parse(GetInput("How many players?: "));
             players = new List<Player>();
-            for (int i = 1; i <= playerCount; i++)
-            {
+            for (int i = 1; i <= playerCount; i++) {
                 players.Add(new Player(GetInput("Player " + i + " name: ")));
             }
             cards = new Deck<Card>();
@@ -54,11 +48,10 @@ namespace Uno
             dir = 1;
         }
 
-        void Turn()
-        {
+        void Turn() {
             Player p = players[currentPlayer];
             cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(nClr, CardType.Wild) : cards.Top));
-            if(p.HasWon()) {
+            if (p.HasWon()) {
                 players.Remove(p);
                 winners[nextPlace - 1] = p;
                 nextPlace++;
@@ -82,8 +75,7 @@ namespace Uno
         }
 
 
-        string GetInput(string prompt)
-        {
+        string GetInput(string prompt) {
             Console.Write(prompt);
             return Console.ReadLine();
         }
@@ -124,6 +116,6 @@ namespace Uno
                     break;
             }
         }
-  
+
     }
 }
