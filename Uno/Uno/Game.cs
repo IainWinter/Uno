@@ -93,7 +93,7 @@ namespace Uno {
             }
         }
 
-        void FuncCards(CardType c) {
+        void HandleCard(CardType c) {
             switch (c) {
                 case CardType.DrawTwo:
                     for (int i = 0; i < 2; i++) {
@@ -114,11 +114,6 @@ namespace Uno {
                     break;
                 case CardType.Wild:
                     nClr = ColorInput("New Color: ");
-                    break;
-                default:
-                    string[] arr = new string[] { "one", "two", "three" };
-                    Console.WriteLine(arr[3]);
-                    //spice
                     break;
             }
         }
