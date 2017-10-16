@@ -143,34 +143,19 @@ namespace Uno {
         public void GenerateDeck() {
             Array colors = Enum.GetValues(typeof(CardColor));
             Array types = Enum.GetValues(typeof(CardType));
-
-            foreach (CardColor color in colors) {
-                foreach (CardType type in types) {
-                    if (color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour)) {
-                        cards.Add(new Card(color, type));
-                    } else if (color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour) {
-                        cards.Add(new Card(color, type));
+            for (int i = 0; i < 2; i++){
+                foreach (CardColor color in colors){
+                    foreach (CardType type in types){
+                        if (color != CardColor.Wild && !(type == CardType.Wild || type == CardType.DrawFour)){
+                            cards.Add(new Card(color, type));
+                        }
                     }
                 }
             }
-            foreach (CardColor color in colors)
-            {
-                foreach (CardType type in types)
-                {
-                    if (color == CardColor.Wild && (type == CardType.Wild || type == CardType.DrawFour))
-                    {
-                        cards.Add(new Card(color, type));
-                    }
-                    else if (color != CardColor.Wild && type != CardType.Wild && type != CardType.DrawFour)
-                    {
-                        cards.Add(new Card(color, type));
-                    }
-                }
+            for (int i = 0; i < 4; i++){
+                cards.Add(new Card(CardColor.Wild, CardType.Wild));
+                cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
             }
-            cards.Add(new Card(CardColor.Wild, CardType.Wild));
-            cards.Add(new Card(CardColor.Wild, CardType.Wild));
-            cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
-            cards.Add(new Card(CardColor.Wild, CardType.DrawFour));
         }
     }
 }
