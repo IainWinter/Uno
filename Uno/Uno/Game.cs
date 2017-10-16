@@ -56,6 +56,11 @@ namespace Uno {
         void Turn() {
             Console.Clear();
             Player p = players[currentPlayer];
+            for (int i = 0; i < 10; i++) {
+                Console.Write("GIVE COMPUTER TO " + p.name.ToUpper() + " [" + (5 - 0.5 * i) + " SECONDS]");
+                System.Threading.Thread.Sleep(500);
+                Console.Clear();
+            }   
             HandleCard(cards.Play(p.ChooseCard(cards.Top.type == CardType.Wild ? new Card(newClr, CardType.Wild) : cards.Top)).type);
             if (p.HasWon()) {
                 players.Remove(p);
