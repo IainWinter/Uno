@@ -13,6 +13,7 @@ namespace Uno {
 
         public void DealToHand(Card topCard) {
             _hand.DealToHand(topCard);
+
         }
 
         public Card ChooseCard(Card topCard) {
@@ -35,7 +36,7 @@ namespace Uno {
             return card;
         }
 
-        public Boolean HasWon() {
+        public Boolean HasFinished() {
             return _hand.GetSize() == 0;
         }
     }
