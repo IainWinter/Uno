@@ -30,7 +30,6 @@ namespace Uno {
             for (int i = 0; i < winners.Length; i++) {
                 Console.WriteLine(i + ": " + winners[i].name);
             }
-
         }
 
         void Init() {
