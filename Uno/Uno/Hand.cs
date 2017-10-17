@@ -21,6 +21,10 @@ namespace Uno {
             _hand.Add(card);
         }
 
+        public void DealToHand(T card, int index) {
+            _hand.Insert(index, card);
+        }
+
         public void DealToHand(T[] cards) {
             _hand.AddRange(cards);
         }
@@ -44,7 +48,7 @@ namespace Uno {
             return sb.ToString();
         }
 
-        public override IEnumerator<T> GetEnumerator() {
+        public IEnumerator<T> GetEnumerator() {
             return _hand.GetEnumerator();
         }
     }

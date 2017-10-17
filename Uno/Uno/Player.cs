@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace Uno {
     class Player {
         public string name;
@@ -11,12 +13,21 @@ namespace Uno {
             _hand = new Hand<Card>();
         }
 
+        int IndexOf(CardColor[] arr, CardColor item) {
+            for (int i = 0; i < arr.Length; i++) if (arr[i] == item) return i;
+            return -1;
+        }
+
         public void DealToHand(Card topCard) {
-            _hand.DealToHand(topCard);
+            CardColor[] cols = (CardColor[]) Enum.GetValues(typeof(CardColor));
+            for (int i = 0; i < _hand.GetSize(); i++) {
+                if(IndexOf(cols, _hand[i].color) <= IndexOf(cols, _hand[i + 1].color)) {
+
+                }
+            }
         }
 
         public Card ChooseCard(Card topCard) {
-            Console.WriteLine($"It is now {name}'s turn!");
             Console.WriteLine();
             Console.WriteLine($"-------- {name}'s Turn --------");
             Console.Write(_hand.ToString());
@@ -36,18 +47,11 @@ namespace Uno {
             return card;
         }
 
-        public bool HasWon() {
+        public bool HasFinished() {
             return _hand.GetSize() == 0;
         }
 
-        public bool CanPlay(Card topCard) {
-            foreach(Card c in _hand) {
-                if(c.color == topCard.color || c.type == topCard.type || c.type == CardType.Wild) {
-                    return true;
-                }
-            }
 
-            return false;
-        }
+
     }
 }
