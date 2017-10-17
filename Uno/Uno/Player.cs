@@ -49,5 +49,9 @@ namespace Uno {
 
             return false;
         }
+
+        public Card AutoTurn(Card topCard) {
+            
+        }
     }
 }
