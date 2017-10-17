@@ -29,7 +29,7 @@ namespace Uno {
             winners[winners.Length - 1] = players[0];
             Console.WriteLine();
             for (int i = 0; i < winners.Length; i++) {
-                Console.WriteLine(i + ": " + winners[i].name);
+                Console.WriteLine($"{i}: { winners[i].name}");
             }
 
             Console.ReadLine();
