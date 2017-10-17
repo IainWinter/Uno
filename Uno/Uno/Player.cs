@@ -25,10 +25,10 @@ namespace Uno {
 
             int cardIndex = 0;
             Card card;
+            Console.WriteLine();
             do {
-                Console.WriteLine();
                 string input = "";
-                while (int.TryParse(input, out cardIndex) && cardIndex >= 0 && cardIndex < _hand.GetSize()) {
+                while (!(int.TryParse(input, out cardIndex) && cardIndex > 0 && cardIndex <= _hand.Count)){
                     Console.Write("Play card: ");
                     input = Console.ReadLine();
                 }
