@@ -10,6 +10,7 @@ namespace Uno {
         private int nextPlace;
         private int dir;
         private CardColor newColor;
+        private int nextPlayerDrawCardCountXDoubleD;
 
         public Game() {
             cards = new Deck<Card>();
@@ -65,12 +66,13 @@ namespace Uno {
                 drawAmnt++;
             }
 
-            if (drawAmnt > 0) {
-                Console.WriteLine($"{player.name} picked up {drawAmnt} cards");
+            if (drawAmnt > 0 || nextPlayerDrawCardCountXDoubleD > 0) {
+                Console.WriteLine($"{player.name} picked up {drawAmnt + nextPlayerDrawCardCountXDoubleD} cards");
+                nextPlayerDrawCardCountXDoubleD = 0;
             }
 
             Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
-            Card playedCard = player.ChooseCard(topCard);
+            Card playedCard = player.AutoTurn(topCard); //player.ChooseCard(topCard);
 
             cards.Play(playedCard);
             HandleCard(playedCard.type);
@@ -113,17 +115,17 @@ namespace Uno {
 
             return color;
         }
-
+        
         void HandleCard(CardType c) {
             switch (c) {
                 case CardType.DrawTwo:
                     for (int i = 0; i < 2; i++) {
-                        players[Iterate(currentPlayer)].DealToHand(cards.Draw());
+                        GiveNextPlayerCard();
                     }
                     break;
                 case CardType.DrawFour:
                     for (int i = 0; i < 4; i++) {
-                        players[Iterate(currentPlayer)].DealToHand(cards.Draw());
+                        GiveNextPlayerCard();
                     }
                     newColor = ColorInput("New Color: ");
                     break;
@@ -137,6 +139,11 @@ namespace Uno {
                     newColor = ColorInput("New Color: ");
                     break;
             }
+        }
+
+        void GiveNextPlayerCard() {
+            players[Iterate((currentPlayer))].DealToHand(cards.Draw());
+            nextPlayerDrawCardCountXDoubleD++;
         }
 
         public void GenerateDeck() {

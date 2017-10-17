@@ -40,7 +40,7 @@ namespace Uno {
         }
 
         public bool HasFinished() {
-            return _hand.GetSize() == 0;
+            return _hand.Count == 0;
         }
 
         public bool CanPlay(Card topCard) {
@@ -51,6 +51,18 @@ namespace Uno {
             }
 
             return false;
+        }
+
+        public Card AutoTurn(Card topCard) {
+            for (int i = 0; i < _hand.Count; i++) {
+                Card c = _hand[i];
+                if (c.color == topCard.color || c.type == topCard.type || c.type == CardType.Wild || c.color == CardColor.Wild) {
+                    _hand.PlayCard(i);
+                    return ChooseCard(c);
+                }
+            }
+
+            throw new Exception("help");
         }
     }
 }
