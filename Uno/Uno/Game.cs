@@ -56,7 +56,7 @@ namespace Uno {
             Console.Clear();
             Player player = players[currentPlayer];
 
-            GetInput($"Press any key to change to {player.name}'s turn...");
+            GetInput($"Press enter to change to {player.name}'s turn...");
             Console.Clear();
 
             int drawAmnt = 0;
