@@ -31,6 +31,8 @@ namespace Uno {
             for (int i = 0; i < winners.Length; i++) {
                 Console.WriteLine(i + ": " + winners[i].name);
             }
+
+            Console.ReadLine();
         }
 
         void Init() {
@@ -61,7 +63,7 @@ namespace Uno {
             Console.Clear();
 
             int drawAmnt = 0;
-            while (!player.CanPlay(cards.Top)) {
+            while (!player.CanPlay(TopCardChangeColor())) {
                 player.DealToHand(cards.Draw());
                 drawAmnt++;
             }
@@ -71,8 +73,8 @@ namespace Uno {
                 nextPlayerDrawCardCountXDoubleD = 0;
             }
 
-            Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
-            Card playedCard = player.AutoTurn(topCard); //player.ChooseCard(topCard);
+            Card topCard = TopCardChangeColor();
+            Card playedCard = player.ChooseCard(topCard); //player.ChooseCard(topCard);
 
             cards.Play(playedCard);
             HandleCard(playedCard.type);
@@ -84,6 +86,10 @@ namespace Uno {
             }
 
             Iterate();
+        }
+
+        Card TopCardChangeColor() {
+            return cards.Top.color == CardColor.Wild ? new Card(newColor, cards.Top.type) : cards.Top;
         }
 
         int Iterate(int i) {

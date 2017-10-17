@@ -22,8 +22,16 @@ namespace Uno {
         }
 
         public T Draw() {
+            if(_unPlayed.Count == 0) {
+                _unPlayed = new List<T>(_played);
+                _played.Clear();
+                Shuffle();
+                Play(Draw());
+            }
+
             T item = _unPlayed[0];
-            _unPlayed.RemoveAt(0);
+            _unPlayed.RemoveAt(0
+                );
             return item;
         }
 
