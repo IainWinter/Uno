@@ -118,12 +118,12 @@ namespace Uno {
             switch (c) {
                 case CardType.DrawTwo:
                     for (int i = 0; i < 2; i++) {
-                        players[Iterate((currentPlayer))].DealToHand(cards.Draw());
+                        players[Iterate(currentPlayer)].DealToHand(cards.Draw());
                     }
                     break;
                 case CardType.DrawFour:
                     for (int i = 0; i < 4; i++) {
-                        players[Iterate((currentPlayer))].DealToHand(cards.Draw());
+                        players[Iterate(currentPlayer)].DealToHand(cards.Draw());
                     }
                     newColor = ColorInput("New Color: ");
                     break;
