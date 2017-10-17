@@ -36,7 +36,7 @@ namespace Uno {
             return card;
         }
 
-        public bool HasWon() {
+        public bool HasFinished() {
             return _hand.GetSize() == 0;
         }
 

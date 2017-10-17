@@ -75,7 +75,7 @@ namespace Uno {
             cards.Play(playedCard);
             HandleCard(playedCard.type);
 
-            if (player.HasWon()) {
+            if (player.HasFinished()) {
                 players.Remove(player);
                 winners[nextPlace - 1] = player;
                 nextPlace++;
