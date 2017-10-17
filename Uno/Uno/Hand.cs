@@ -8,6 +8,8 @@ namespace Uno {
     class Hand<T> {
         private List<T> _hand;
 
+        public int Count => _hand.Count;
+
         public Hand() {
             _hand = new List<T>();
         }
@@ -27,10 +29,6 @@ namespace Uno {
 
         public void DealToHand(T[] cards) {
             _hand.AddRange(cards);
-        }
-
-        public int GetSize() {
-            return _hand.Count;
         }
 
         public T PlayCard(int index) {

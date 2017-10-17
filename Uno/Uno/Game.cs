@@ -72,7 +72,7 @@ namespace Uno {
             }
 
             Card topCard = cards.Top.type == CardType.Wild ? new Card(newColor, CardType.Wild) : cards.Top;
-            Card playedCard = player.ChooseCard(topCard);
+            Card playedCard = player.AutoTurn(topCard); //player.ChooseCard(topCard);
 
             cards.Play(playedCard);
             HandleCard(playedCard.type);
