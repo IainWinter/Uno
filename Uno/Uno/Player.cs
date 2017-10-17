@@ -27,9 +27,12 @@ namespace Uno {
             Card card;
             do {
                 Console.WriteLine();
-                Console.Write("Play card: ");
-                cardIndex = int.Parse(Console.ReadLine()) - 1;
-                card = _hand[cardIndex];
+                string input = "";
+                while (int.TryParse(input, out cardIndex) && cardIndex >= 0 && cardIndex < _hand.GetSize()) {
+                    Console.Write("Play card: ");
+                    input = Console.ReadLine();
+                }
+                card = _hand[cardIndex - 1];
             } while (card.color != topCard.color && card.type != topCard.type && card.type != CardType.Wild && card.color != CardColor.Wild);
 
             _hand.PlayCard(cardIndex);
