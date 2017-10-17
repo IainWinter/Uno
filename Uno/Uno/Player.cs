@@ -35,7 +35,7 @@ namespace Uno {
                 card = _hand[cardIndex - 1];
             } while (card.color != topCard.color && card.type != topCard.type && card.type != CardType.Wild && card.color != CardColor.Wild);
 
-            _hand.PlayCard(cardIndex);
+            _hand.PlayCard(cardIndex - 1);
             return card;
         }
 
