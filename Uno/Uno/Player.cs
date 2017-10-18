@@ -58,7 +58,8 @@ namespace Uno {
                 Card c = _hand[i];
                 if (c.color == topCard.color || c.type == topCard.type || c.type == CardType.Wild || c.color == CardColor.Wild) {
                     _hand.PlayCard(i);
-                    return ChooseCard(c);
+                    Console.WriteLine($"{name} played {c}");
+                    return c;
                 }
             }
 
