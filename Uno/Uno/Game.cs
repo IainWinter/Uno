@@ -49,6 +49,7 @@ namespace Uno {
             foreach (Player p in players) {
                 for (int i = 0; i < 7; i++) {
                     p.DealToHand(cards.Draw());
+                  //  Console.WriteLine($"Gave card to {p.name}");
                 }
             }
         }
